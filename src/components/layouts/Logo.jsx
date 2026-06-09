@@ -6,7 +6,7 @@ const Logo = () => {
     return (
         <Link href={"/"} className='flex items-center gap-1'>
             <Image alt="Hero KidZ" src="/assets/logo.png" width={50} height={40}/>
-            <h2 className='text-xl font-extrabold'>HERO <span className='text-primary'>KIDZ</span></h2>
+            <h2 className='text-xl font-extrabold'>HERO <span className='text-primary'>KIDS</span></h2>
         </Link>
     );
 };

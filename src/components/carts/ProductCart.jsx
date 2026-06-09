@@ -1,48 +1,35 @@
-import Image from "next/image";
 import Link from "next/link";
-import { FaStar } from "react-icons/fa";
+import Image from "next/image";
 
-const ProductCard = ({ product }) => {
-  const discountedPrice = Math.round(
-    product.price - (product.price * product.discount) / 100
-  );
-
+export default function ProductCard({ product }) {
   return (
-    <Link href={`/products/${product._id}`}>
-      <div className="card bg-base-100 shadow-md hover:shadow-xl transition cursor-pointer">
+    <div className="card bg-base-100 shadow-xl h-full">
+      <figure className="h-64 overflow-hidden">
+        <Image
+          src={product.image}
+          alt={product.title}
+          width={400}
+          height={300}
+          className="w-full h-full object-cover"
+        />
+      </figure>
 
-        <figure className="relative h-64">
-          <Image
-            src={product.image}
-            alt={product.title}
-            fill
-            className="object-cover"
-          />
+      <div className="card-body flex flex-col">
+        <h2 className="card-title">{product.title}</h2>
 
-          {product.discount > 0 && (
-            <div className="badge badge-error absolute top-2 right-2 text-white">
-              -{product.discount}%
-            </div>
-          )}
-        </figure>
+        <p className="text-gray-500 flex-grow">
+          {product.description?.slice(0, 80)}...
+        </p>
 
-        <div className="card-body">
-          <h2 className="card-title text-base line-clamp-2">
-            {product.title}
-          </h2>
-
-          <div className="flex items-center gap-2 text-sm">
-            <FaStar className="text-warning" />
-            {product.ratings} ({product.reviews})
-          </div>
-
-          <p className="font-bold text-primary">
-            ৳{discountedPrice}
-          </p>
+        <div className="card-actions mt-auto">
+          <Link
+            href={`/products/${product._id}`}
+            className="btn btn-primary w-full"
+          >
+            View Details
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
-};
-
-export default ProductCard;
+}
